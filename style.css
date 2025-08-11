@@ -23,7 +23,15 @@ body {
     flex-wrap: wrap;
     /* allows better responsive wrapping */
     gap: 10px;
-    /* space between items when wrapped */
+    position: fixed;
+    /* make it stay in place */
+    top: 0;
+    /* stick to top */
+    left: 0;
+    /* align to left */
+    width: 100%;
+    /* full width */
+    z-index: 1000;
 }
 
 .nav-links {
@@ -91,7 +99,7 @@ body {
     justify-content: center;
     background: linear-gradient(145deg, #0d1117, #1b1f26);
     color: white;
-    padding: 100px 10%;
+    padding: 150px 10%;
     position: relative;
     overflow: hidden;
 }
@@ -540,8 +548,16 @@ body {
 
 /* Mobile-only layout (does NOT affect desktop) */
 @media (max-width: 768px) {
+    .logo {
+        order: 1;
+    }
 
-    /* Keep logo + burger on one row */
+    .menu-toggle {
+        order: 2;
+        margin-left: auto;
+        /* push to the far right */
+    }
+
     .navbar {
         flex-direction: row !important;
         align-items: center !important;
@@ -556,47 +572,56 @@ body {
         margin-left: 8px;
     }
 
-    /* Hide links/CTA until menu opens */
+    /* Hide menu items & CTA until opened */
     .nav-links,
     .btn-outline {
         display: none;
     }
 
-    /* When menu is open, stack items vertically */
-    .navbar.open .nav-links,
-    .navbar.open .btn-outline {
-        display: flex;
+    /* When opened: stack links vertically */
+    .navbar.open {
+        flex-wrap: wrap;
+        /* lets links drop to next line */
+        align-items: flex-start;
     }
 
     .navbar.open .nav-links {
+        order: 3;
+        display: flex;
         flex-direction: column;
         gap: 12px;
-        width: 100%;
         margin-top: 8px;
+        width: auto;
+        /* don’t stretch full width */
+        margin-left: auto;
+        /* anchor to the right edge */
+        align-items: flex-end;
+        /* right-align each link */
+        text-align: right;
     }
 
-    /* Put GET STARTED under Services, smaller button on mobile */
+    /* GET STARTED button below Services, smaller on mobile */
     .navbar.open .btn-outline {
+        display: inline-block;
+        flex: 0 0 100%;
+        order: 4;
+        /* ensures it's after nav links */
         margin-top: 6px;
-        /* sits right under Services */
         align-self: flex-start;
-        /* left align like the links */
         padding: 8px 16px;
-        /* smaller */
+        /* smaller padding */
         font-size: 14px;
-        /* smaller text */
         width: fit-content;
-        /* shrink to text */
+        display: none;
     }
 
-    /* Tighten hero & remove the blank image block on phones only */
+    /* Hero: tighter padding; hide big image */
     .hero {
-        padding: 40px 16px !important;
+        padding: 150px 16px 40px !important;
     }
 
     .hero-image {
         display: none !important;
-        /* kills the big empty band */
     }
 
     .hero-content {
@@ -607,60 +632,8 @@ body {
         width: 100%;
         text-align: center;
     }
-}
 
-@media (max-width: 768px) {
-
-    /* Keep logo + hamburger on top row */
-    .navbar {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        /* allow next items to wrap to new line */
-        padding: 14px 16px;
-        gap: 8px;
-    }
-
-    .menu-toggle {
-        display: inline-block;
-        margin-left: 8px;
-    }
-
-    /* Hide menu until opened */
-    .nav-links,
-    .btn-outline {
-        display: none;
-    }
-
-    /* When opened: make nav-links + button each take a full row */
-    .navbar.open .nav-links {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        flex: 0 0 100%;
-        /* full width -> new line */
-        order: 3;
-        /* comes after the hamburger */
-        margin-top: 8px;
-    }
-
-    .navbar.open .btn-outline {
-        display: inline-block;
-        flex: 0 0 100%;
-        /* full width row so it sits BELOW Services */
-        order: 4;
-        margin-top: 6px;
-        align-self: flex-start;
-        /* left align like the links */
-        padding: 8px 16px;
-        /* smaller on mobile */
-        font-size: 14px;
-        width: fit-content;
-    }
-}
-
-@media (max-width: 768px) {
+    /* About: remove image on mobile */
     .about {
         padding: 48px 16px 40px;
     }
@@ -669,8 +642,24 @@ body {
         display: none;
     }
 
-    /* removes the empty block */
     .about-text p:last-of-type {
         margin-bottom: 14px;
+    }
+
+    /* Stack service cards nicely */
+    .service-cards {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .card {
+        width: 100%;
+        height: auto;
+        padding: 24px;
+    }
+
+    /* Keep AI FP&A section tidy */
+    .ai-content {
+        max-width: 100%;
     }
 }

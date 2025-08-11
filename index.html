@@ -11,34 +11,56 @@
         content="RA&MTECH, AI forecasting, financial analytics, data-driven finance, FP&A, business consulting, financial technology">
     <meta name="author" content="RA&MTECH">
     <link rel="canonical" href="https://ra-mtech.com/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
     <title>RA&MTECH</title>
-    <link rel="stylesheet" href="style.css?v=20250811">
+    <link rel="stylesheet" href="style.css?v=20250812">
 
-
-    <!-- Consent Mode defaults + GA4 -->
+    <!-- Consent Mode v2 defaults (region-aware) -->
     <script>
-        // Minimal Consent Mode v2 defaults
+        // dataLayer + gtag available early
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
 
+
         gtag('consent', 'default', {
-            'analytics_storage': 'granted',     // switch to 'denied' for EU until consent if you prefer
-            'ad_storage': 'denied',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied',
-            'wait_for_update': 500
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'denied'
+        }, {
+            region: [
+                'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT',
+                'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'IS', 'LI', 'NO', 'GB', 'UK'
+            ]
+        });
+
+        // 2) Default for everyone else = analytics granted (ads still denied)
+        gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'granted',
+            wait_for_update: 500   // give a brief window to apply user choice
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NVLK2NJ66N"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-NVLK2NJ66N');
+    </script>
+    <script>
+        // Detect device type
+        const deviceType = window.innerWidth <= 768 ? 'mobile' : 'desktop';
+
+        // Set it as a GA4 user property so all events include it
+        gtag('set', 'user_properties', {
+            device_type: deviceType
         });
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXXXXX'); // replace with your Measurement ID before launch
-    </script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -185,6 +207,13 @@
                 })
                 .then((res2) => {
                     console.log("Admin email sent:", res2.status, res2.text);
+
+                    gtag('event', 'waitlist_signup', {
+                        method: 'emailjs',
+                        page_location: window.location.href,
+                        page_title: document.title
+                    });
+
                     document.getElementById('waitlist-success').textContent = "Thank you! You've been added to the waitlist.";
                     document.getElementById('waitlist-success').style.color = "green";
                     document.getElementById('waitlist-success').style.display = "block";
@@ -211,9 +240,69 @@
             </div>
         </div>
     </footer>
+
+
+    <!-- Simple consent banner -->
+    <div id="consent-banner" class="consent-banner" hidden>
+        <div class="consent-inner">
+            <p>We use cookies for analytics to improve your experience. You can accept or reject non-essential cookies.
+            </p>
+            <div class="consent-actions">
+                <button id="consent-accept" class="consent-btn accept">Accept</button>
+                <button id="consent-reject" class="consent-btn reject">Reject</button>
+            </div>
+        </div>
+    </div>
     <script>
         document.querySelector('.menu-toggle')?.addEventListener('click', function () {
             document.querySelector('.navbar').classList.toggle('open');
+        });
+    </script>
+    <script>
+        (function () {
+            const KEY = 'ra_consent_choice'; // 'granted' | 'denied'
+            const banner = document.getElementById('consent-banner');
+            const acceptBtn = document.getElementById('consent-accept');
+            const rejectBtn = document.getElementById('consent-reject');
+
+            // Show banner only if user hasn't chosen yet
+            const current = localStorage.getItem(KEY);
+            if (!current) {
+                banner.hidden = false;
+            }
+
+            function setConsent(choice) {
+                // Persist choice
+                localStorage.setItem(KEY, choice);
+
+                // Update Consent Mode live
+                gtag('consent', 'update', {
+                    analytics_storage: choice === 'granted' ? 'granted' : 'denied',
+                    // keep ads denied regardless
+                    ad_storage: 'denied',
+                    ad_user_data: 'denied',
+                    ad_personalization: 'denied'
+                });
+
+                banner.hidden = true;
+            }
+
+            acceptBtn?.addEventListener('click', () => setConsent('granted'));
+            rejectBtn?.addEventListener('click', () => setConsent('denied'));
+        })();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const getStartedBtn = document.querySelector('.btn-outline'); // adjust if your button uses another class
+            if (getStartedBtn) {
+                getStartedBtn.addEventListener('click', function () {
+                    gtag('event', 'get_started_click', {
+                        event_category: 'engagement',
+                        event_label: 'Get Started Button',
+                        value: 1
+                    });
+                });
+            }
         });
     </script>
 </body>
