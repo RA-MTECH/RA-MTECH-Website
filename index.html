@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta first -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RA&MTECH</title>
+
+    <!-- Consent Mode defaults + GA4 -->
+    <script>
+        // Minimal Consent Mode v2 defaults
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+
+        gtag('consent', 'default', {
+            'analytics_storage': 'granted',     // switch to 'denied' for EU until consent if you prefer
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX'); // replace with your Measurement ID before launch
+    </script>
+
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">RA&MTECH</div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+        </ul>
+        <a href="#waitlist" class="btn-outline">GET STARTED</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-image"></div>
+        <div class="hero-content">
+            <h1>RA&MTECH</h1>
+            <p>Delivering Quant Finance Solutions</p>
+            <a href="#waitlist" class="btn">GET STARTED</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-text">
+            <p class="subheading">BUILT FOR FINANCE: POWERED BY MACHINE LEARNING</p>
+            <h2>Transforming Finance</h2>
+            <p>
+                At RA&MTECH, we specialize in delivering cutting-edge LLM and quantitative finance solutions tailored
+                for
+                small to
+                medium-sized companies. Our mission is to leverage modern quant finance technologies, equipping our
+                clients' finance teams with the tools and insights needed to thrive in the evolving financial
+                landscape. We are
+                your partner in navigating the complexities of Financial Technology, ensuring you stay ahead of the
+                competition.
+            </p>
+            <a href="#waitlist">Get in touch</a>
+        </div>
+        <div class="about-image"></div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <p class="subheading">INNOVATIVE SOLUTIONS</p>
+        <h2>Preparing Businesses For The Future of Finance</h2>
+        <div class="service-cards">
+            <div class="card">
+                <div class="card-image img-1"></div>
+                <h3>Data Management</h3>
+                <p>
+                    Translating spreadsheet-based systems into scalable, flexible data pipelines—empowering companies to
+                    evolve beyond static models and make faster, smarter decisions.
+                </p>
+            </div>
+            <div class="card">
+                <div class="card-image img-2"></div>
+                <h3>Advance Data Analytics and Analysis Reports</h3>
+                <p>
+                    Statistical reports on revenue and P&L trends that help finance teams forecast smarter by
+                    identifying
+                    key drivers and macroeconomic impacts.
+                </p>
+            </div>
+            <div class="card">
+                <div class="card-image img-3"></div>
+                <h3>Financial Modeling and Forecasting</h3>
+                <p>
+                    Through machine learning, we help forecast, guide strategy, and help businesses build data-driven
+                    systems to strengthen finance capabilities.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="ai-fpa">
+        <p class="subheading">NEXT-GEN FINANCE INTELLIGENCE</p>
+        <h2>AI-Powered FP&A Systems:</h2>
+        <p class="ai-subtitle">Enhance Forecast Decision-Making</p>
+        <div class="ai-content">
+            <div class="ai-text">
+                <p>
+                    Introducing RA&MTECH's smart AI tool for finance teams. RA&MTECH uses AI agents and
+                    macroeconomic
+                    data that will help you stay ahead of market changes. Just upload your revenue data into our
+                    securely sandboxed AI Agent, and the
+                    system helps you find trends and make smarter predictions using machine
+                    learning.
+                </p>
+                <p>
+                    It's like adding a new teammate who never sleeps, doesn’t need check-ins,
+                    and always has the latest data ready. You can ask questions in plain English,
+                    and it will instantly surface insights, spot patterns, and help you make faster,
+                    smarter decisions.
+                </p>
+                <a href="#waitlist" class="btn-outline">Join the Waitlist</a>
+            </div>
+            <div class="ai-image"></div>
+        </div>
+    </section>
+    <!-- Waitlist Section -->
+    <section class="waitlist" id="waitlist">
+        <h2>TRANSFORM YOUR FORECASTING SYSTEMS</h2>
+        <form id="waitlist-form">
+            <input type="email" name="email" id="user-email" placeholder="Enter your email" required />
+            <button type="submit">GET IN TOUCH</button>
+            <p id="waitlist-success" style="display:none; color: green;"></p>
+        </form>
+
+    </section>
+
+
+    <!-- Clients Section (Add later) -->
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init('1St8aSSLxAAWWK4nc');
+
+        document.getElementById('waitlist-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('user-email').value.trim();
+            if (!email) {
+                alert("Please enter a valid email.");
+                return;
+            }
+
+            const templateParams = { email: email };
+            console.log("✅ Email being sent to user:", email);
+            console.log("✅ Template Params:", templateParams);
+
+            emailjs.send("service_359kggr", "template_z9vh42q", templateParams)
+                .then((res1) => {
+                    console.log("User email sent:", res1.status, res1.text);
+                    return emailjs.send("service_359kggr", "template_e8n4jdl", templateParams);
+                })
+                .then((res2) => {
+                    console.log("Admin email sent:", res2.status, res2.text);
+                    document.getElementById('waitlist-success').textContent = "Thank you! You've been added to the waitlist.";
+                    document.getElementById('waitlist-success').style.color = "green";
+                    document.getElementById('waitlist-success').style.display = "block";
+                    document.getElementById('waitlist-form').reset();
+                })
+                .catch((error) => {
+                    console.error("🚨 EmailJS error:", error);
+                    document.getElementById('waitlist-success').textContent = "Oops! Something went wrong. Please try again.";
+                    document.getElementById('waitlist-success').style.color = "red";
+                    document.getElementById('waitlist-success').style.display = "block";
+                });
+        });
+    </script>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© 2025 RA&MTECH LLC. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#waitlist">Contact</a>
+                <a href="https://www.linkedin.com/company/ra-mtech-llc/" target="_blank"
+                    rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
