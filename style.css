@@ -21,23 +21,16 @@ body {
     background-color: #1b1f26;
     box-shadow: 0 2px 10px rgba(0, 123, 255, 0.1);
     flex-wrap: wrap;
-    /* allows responsive wrapping */
+    /* allows better responsive wrapping */
     gap: 10px;
     /* space between items when wrapped */
 }
 
-.logo {
-    font-weight: 700;
-    font-size: 20px;
-    color: white;
-}
-
-/* Single, merged nav-links block */
 .nav-links {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    /* keeps items on a line until no room */
+    /* keeps items on same line until no room */
     gap: 20px;
 }
 
@@ -46,7 +39,26 @@ body {
     color: #ccc;
     font-weight: 500;
     white-space: nowrap;
-    /* prevent awkward breaks */
+    /* prevents awkward text breaking */
+    transition: color 0.3s ease;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #ccc;
+    font-weight: 500;
     transition: color 0.3s ease;
 }
 
@@ -214,11 +226,13 @@ body {
     box-shadow: 0 4px 20px rgba(0, 123, 255, 0.05);
     width: 350px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     height: 350px;
+    /* or however tall you want it */
 }
 
 .card:hover {
@@ -241,6 +255,7 @@ body {
 .ai-fpa {
     padding: 100px 8%;
     background: linear-gradient(145deg, #0d1117, #1b1f26);
+    /* modern, tech gradient */
     color: #f0f0f0;
     text-align: center;
     position: relative;
@@ -286,6 +301,18 @@ body {
     font-weight: 600;
     color: #fff;
     margin-bottom: 30px;
+    /* space between subtitle and paragraph */
+}
+
+.subheading {
+    color: #007BFF;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    z-index: 1;
+    position: relative;
 }
 
 .ai-content {
@@ -326,6 +353,7 @@ body {
     background-color: #0056b3;
     box-shadow: 0 8px 25px rgba(0, 86, 179, 0.35);
 }
+
 
 /* Waitlist */
 .waitlist {
@@ -375,7 +403,7 @@ body {
     background-color: #0056b3;
 }
 
-/* Clients */
+/* Clients Section */
 .clients {
     padding: 80px 10%;
     background-color: #0d1117;
@@ -419,6 +447,49 @@ body {
     font-weight: 600;
 }
 
+@keyframes pulse-bg {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .hero,
+    .about {
+        flex-direction: column;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .service-cards,
+    .client-list,
+    .ai-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ai-text {
+        text-align: center;
+    }
+}
+
 /* Footer */
 .footer {
     background-color: #1b1f26;
@@ -456,7 +527,6 @@ body {
     color: #007BFF;
 }
 
-/* ----- Mobile first polish ----- */
 .menu-toggle {
     display: none;
     background: transparent;
@@ -468,174 +538,139 @@ body {
     cursor: pointer;
 }
 
-/* Tablet tweaks */
-@media (max-width: 992px) {
-    .hero {
-        padding: 80px 8%;
-    }
-}
-
-/* Phone layout */
+/* Mobile-only layout (does NOT affect desktop) */
 @media (max-width: 768px) {
 
-    /* NAV: keep logo + hamburger on one row */
-    .navbar .get-started-btn {
-        display: block;
-        margin: 10px 0 0 0;
-        /* space above button */
+    /* Keep logo + burger on one row */
+    .navbar {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        padding: 14px 16px;
+        gap: 8px;
+    }
+
+    .menu-toggle {
+        display: inline-block;
+        margin-left: 8px;
+    }
+
+    /* Hide links/CTA until menu opens */
+    .nav-links,
+    .btn-outline {
+        display: none;
+    }
+
+    /* When menu is open, stack items vertically */
+    .navbar.open .nav-links,
+    .navbar.open .btn-outline {
+        display: flex;
+    }
+
+    .navbar.open .nav-links {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    /* Put GET STARTED under Services, smaller button on mobile */
+    .navbar.open .btn-outline {
+        margin-top: 6px;
+        /* sits right under Services */
+        align-self: flex-start;
+        /* left align like the links */
         padding: 8px 16px;
-        /* smaller button */
+        /* smaller */
         font-size: 14px;
         /* smaller text */
         width: fit-content;
-        /* make it shrink to text */
+        /* shrink to text */
     }
 
-    .navbar .menu {
+    /* Tighten hero & remove the blank image block on phones only */
+    .hero {
+        padding: 40px 16px !important;
+    }
+
+    .hero-image {
+        display: none !important;
+        /* kills the big empty band */
+    }
+
+    .hero-content {
+        padding: 0;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Keep logo + hamburger on top row */
+    .navbar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        /* allow next items to wrap to new line */
+        padding: 14px 16px;
+        gap: 8px;
+    }
+
+    .menu-toggle {
+        display: inline-block;
+        margin-left: 8px;
+    }
+
+    /* Hide menu until opened */
+    .nav-links,
+    .btn-outline {
+        display: none;
+    }
+
+    /* When opened: make nav-links + button each take a full row */
+    .navbar.open .nav-links {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        /* left-align everything */
+        gap: 12px;
+        flex: 0 0 100%;
+        /* full width -> new line */
+        order: 3;
+        /* comes after the hamburger */
+        margin-top: 8px;
     }
 
-    .navbar .menu a {
-        margin: 5px 0;
-        /* spacing between menu items */
+    .navbar.open .btn-outline {
+        display: inline-block;
+        flex: 0 0 100%;
+        /* full width row so it sits BELOW Services */
+        order: 4;
+        margin-top: 6px;
+        align-self: flex-start;
+        /* left align like the links */
+        padding: 8px 16px;
+        /* smaller on mobile */
+        font-size: 14px;
+        width: fit-content;
     }
 }
 
-.menu-toggle {
-    display: inline-block;
-    margin-left: 10px;
-}
+@media (max-width: 768px) {
+    .about {
+        padding: 48px 16px 40px;
+    }
 
-/* hide links/CTA until menu opens */
-.nav-links,
-.btn-outline {
-    display: none;
-}
+    .about-image {
+        display: none;
+    }
 
-.navbar.open .nav-links,
-.navbar.open .btn-outline {
-    display: flex;
-}
-
-.navbar.open {
-    align-items: flex-start;
-}
-
-.navbar.open .nav-links {
-    flex-direction: column;
-    gap: 12px;
-    width: 100%;
-    margin-top: 8px;
-}
-
-.navbar.open .btn-outline {
-    margin-top: 8px;
-    align-self: stretch;
-    justify-content: center;
-    text-align: center;
-}
-
-/* HERO: remove image block & tighten spacing */
-.hero {
-    padding: 40px 16px;
-}
-
-.hero-image {
-    display: none;
-}
-
-.hero-content {
-    padding: 0;
-    text-align: left;
-}
-
-.hero h1 {
-    font-size: 34px;
-}
-
-.hero p {
-    font-size: 16px;
-    margin: 12px 0;
-}
-
-.btn {
-    width: 100%;
-    text-align: center;
-}
-
-/* ABOUT */
-.about {
-    padding: 60px 6%;
-}
-
-.about-image {
-    min-height: 220px;
-    margin-top: 18px;
-}
-
-/* SERVICES */
-.services {
-    padding: 60px 6%;
-}
-
-.service-cards {
-    flex-direction: column;
-    gap: 16px;
-}
-
-.card {
-    width: 100%;
-    height: auto;
-    padding: 24px;
-}
-
-/* AI */
-.ai-fpa {
-    padding: 70px 6%;
-}
-
-.ai-content {
-    max-width: 100%;
-}
-
-.ai-text .btn-outline {
-    width: 100%;
-    text-align: center;
-}
-
-/* WAITLIST */
-.waitlist {
-    padding: 60px 6%;
-}
-
-.waitlist form {
-    gap: 8px;
-}
-
-.waitlist input[type="email"] {
-    width: 100%;
-}
-
-.waitlist button {
-    width: 100%;
-}
-
-/* FOOTER */
-.footer {
-    padding: 22px 6%;
-}
-
-.footer-links {
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-}
-
-
-/* Prevent awkward link breaks on small screens */
-.nav-links a {
-    white-space: nowrap;
+    /* removes the empty block */
+    .about-text p:last-of-type {
+        margin-bottom: 14px;
+    }
 }
