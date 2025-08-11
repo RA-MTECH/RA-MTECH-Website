@@ -526,3 +526,151 @@ body {
 .footer-links a:hover {
     color: #007BFF;
 }
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Mobile-only layout (does NOT affect desktop) */
+@media (max-width: 768px) {
+
+    /* Keep logo + burger on one row */
+    .navbar {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        padding: 14px 16px;
+        gap: 8px;
+    }
+
+    .menu-toggle {
+        display: inline-block;
+        margin-left: 8px;
+    }
+
+    /* Hide links/CTA until menu opens */
+    .nav-links,
+    .btn-outline {
+        display: none;
+    }
+
+    /* When menu is open, stack items vertically */
+    .navbar.open .nav-links,
+    .navbar.open .btn-outline {
+        display: flex;
+    }
+
+    .navbar.open .nav-links {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    /* Put GET STARTED under Services, smaller button on mobile */
+    .navbar.open .btn-outline {
+        margin-top: 6px;
+        /* sits right under Services */
+        align-self: flex-start;
+        /* left align like the links */
+        padding: 8px 16px;
+        /* smaller */
+        font-size: 14px;
+        /* smaller text */
+        width: fit-content;
+        /* shrink to text */
+    }
+
+    /* Tighten hero & remove the blank image block on phones only */
+    .hero {
+        padding: 40px 16px !important;
+    }
+
+    .hero-image {
+        display: none !important;
+        /* kills the big empty band */
+    }
+
+    .hero-content {
+        padding: 0;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Keep logo + hamburger on top row */
+    .navbar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        /* allow next items to wrap to new line */
+        padding: 14px 16px;
+        gap: 8px;
+    }
+
+    .menu-toggle {
+        display: inline-block;
+        margin-left: 8px;
+    }
+
+    /* Hide menu until opened */
+    .nav-links,
+    .btn-outline {
+        display: none;
+    }
+
+    /* When opened: make nav-links + button each take a full row */
+    .navbar.open .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        flex: 0 0 100%;
+        /* full width -> new line */
+        order: 3;
+        /* comes after the hamburger */
+        margin-top: 8px;
+    }
+
+    .navbar.open .btn-outline {
+        display: inline-block;
+        flex: 0 0 100%;
+        /* full width row so it sits BELOW Services */
+        order: 4;
+        margin-top: 6px;
+        align-self: flex-start;
+        /* left align like the links */
+        padding: 8px 16px;
+        /* smaller on mobile */
+        font-size: 14px;
+        width: fit-content;
+    }
+}
+
+@media (max-width: 768px) {
+    .about {
+        padding: 48px 16px 40px;
+    }
+
+    .about-image {
+        display: none;
+    }
+
+    /* removes the empty block */
+    .about-text p:last-of-type {
+        margin-bottom: 14px;
+    }
+}

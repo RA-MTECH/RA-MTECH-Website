@@ -5,6 +5,11 @@
     <!-- Meta first -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="RA&MTECH delivers AI-powered financial forecasting, analytics, and consulting services to help businesses stay ahead of the competition.">
+    <meta name="keywords"
+        content="RA&MTECH, AI forecasting, financial analytics, data-driven finance, FP&A, business consulting, financial technology">
+    <meta name="author" content="RA&MTECH">
     <title>RA&MTECH</title>
 
     <!-- Consent Mode defaults + GA4 -->
@@ -35,8 +40,13 @@
 
 <body>
     <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">RA&MTECH</div>
+
+        <!-- Mobile menu button (mobile only) -->
+        <button class="menu-toggle" type="button" aria-label="Toggle menu">☰</button>
+
         <ul class="nav-links">
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -198,6 +208,11 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.querySelector('.menu-toggle')?.addEventListener('click', function () {
+            document.querySelector('.navbar').classList.toggle('open');
+        });
+    </script>
 </body>
 
 </html>
