@@ -469,7 +469,98 @@ body {
     }
 }
 
+/* Consent banner — matches site style */
+.consent-banner[hidden] {
+    display: none !important;
+}
+
+.consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1100;
+    /* above navbar (1000) */
+    background: #1b1f26;
+    /* site navbar color */
+    color: #ccc;
+    /* site body text color */
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 -8px 20px rgba(0, 123, 255, 0.08);
+    padding: 14px 0;
+    /* vertical rhythm */
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform .25s ease, opacity .25s ease;
+}
+
+/* container width matches sections (10%) */
+.consent-inner {
+    margin: 0 10%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    line-height: 1.5;
+}
+
+/* actions (buttons) */
+.consent-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons styled like site */
+.consent-btn {
+    font-family: inherit;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 10px 16px;
+    border: 2px solid #007BFF;
+    background: transparent;
+    color: #007BFF;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.consent-btn:hover {
+    background: rgba(0, 123, 255, 0.1);
+}
+
+.consent-btn.accept {
+    background: #007BFF;
+    /* like .btn */
+    color: #fff;
+    border-color: #007BFF;
+}
+
+.consent-btn.accept:hover {
+    background: #0056b3;
+}
+
+/* Slide in when we add .show */
+.consent-banner.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
 @media (max-width: 768px) {
+    #consent-banner .consent-inner {
+        margin: 0 16px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    #consent-banner .consent-actions {
+        margin-left: 0;
+        justify-content: flex-end;
+    }
+
+    #consent-banner .consent-btn {
+        padding: 8px 14px;
+    }
+
 
     .hero,
     .about {
