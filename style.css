@@ -556,6 +556,15 @@ body {
     background: #0056b3;
 }
 
+.consent-link {
+    color: #007BFF;
+    text-decoration: underline;
+}
+
+.consent-link:hover {
+    color: #0056b3;
+}
+
 /* Slide in when we add .show */
 .consent-banner.show {
     transform: translateY(0);
