@@ -51,11 +51,15 @@ body {
     transition: color 0.3s ease;
 }
 
-.logo {
-    font-weight: 700;
-    font-size: 20px;
-    color: white;
+
+.logo img {
+    height: 28px;
+    /* Match the visual height of original text */
+    width: auto;
+    display: block;
+
 }
+
 
 .nav-links {
     list-style: none;
@@ -102,6 +106,13 @@ body {
     padding: 150px 10%;
     position: relative;
     overflow: hidden;
+}
+
+.hero-logo {
+    max-width: 100%;
+    height: 105px;
+    /* Similar to your original h1 height */
+    display: block;
 }
 
 .hero::before {
@@ -223,8 +234,15 @@ body {
 .service-cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 40px;
     justify-content: center;
+}
+
+.service-cards .card {
+    flex: 1 1 40%;
+    /* make them wider */
+    max-width: 400px;
+    /* cap so they don’t get too huge */
 }
 
 .card {
