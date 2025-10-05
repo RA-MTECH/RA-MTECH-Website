@@ -1,0 +1,302 @@
+<header class="header">
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/RA-MTECH-SITE/#home" class="nav-logo">
+                <img src="/RA-MTECH-SITE/assets/images/Logo28x28.png" alt="RA&MTECH Logo">
+                <span class="brand-text"></span>
+            </a>
+            <!-- Added id for accessibility control -->
+            <ul class="nav-links" id="primary-mobile-menu" data-menu-collapsible="true">
+                <li><a href="/RA-MTECH-SITE/#home">Home</a></li>
+                <li><a href="/RA-MTECH-SITE/about/">About</a></li>
+                <li><a href="/RA-MTECH-SITE/#services">Services</a></li>
+                <li><a href="/RA-MTECH-SITE/contact">Contact</a></li>
+                <li class="dropdown">
+                    <button class="dropdown-toggle mobile-dropdown-trigger" type="button" aria-expanded="false"
+                        aria-controls="explore-submenu">
+                        <span>Explore RA&MTECH</span>
+                        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <a href="#" class="dropdown-toggle desktop-only">
+                        Explore RA&MTECH
+                        <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <ul class="dropdown-menu" id="explore-submenu">
+                        <li><a href="/RA-MTECH-SITE/case-studies/">Case Studies</a></li>
+                        <li><a href="/RA-MTECH-SITE/events/">Events</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <button class="menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false"
+                aria-controls="primary-mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Complete mobile and desktop styles -->
+    <style>
+        /* Hide hamburger menu on desktop by default */
+        .menu-toggle {
+            display: none;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .navbar {
+                position: relative;
+            }
+
+            .menu-toggle {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 5px;
+                width: 42px;
+                height: 42px;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+                z-index: 110;
+                color: #ffffff;
+            }
+
+            .menu-toggle span {
+                display: block;
+                height: 3px;
+                width: 26px;
+                background: currentColor;
+                border-radius: 2px;
+                transition: transform .35s ease, opacity .35s ease;
+            }
+
+            .navbar.open .menu-toggle span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .navbar.open .menu-toggle span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .navbar.open .menu-toggle span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            /* Mobile nav-links styling */
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                width: 100%;
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                margin: 0;
+                padding: 1rem 0;
+                background: var(--header-bg, #0d1117);
+                border: none;
+                border-radius: 0;
+                list-style: none;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                z-index: 100;
+            }
+
+            .navbar.open .nav-links {
+                display: flex;
+            }
+
+            .nav-links>li {
+                padding: 0;
+                margin: 0 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-links>li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a,
+            .nav-links button.dropdown-toggle {
+                display: flex;
+                width: 100%;
+                text-align: left;
+                background: none;
+                border: none;
+                font: inherit;
+                font-weight: 500;
+                padding: 1rem 0;
+                color: #ffffff;
+                cursor: pointer;
+                align-items: center;
+                justify-content: space-between;
+                text-decoration: none;
+                border-radius: 0;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .nav-links a:hover,
+            .nav-links button.dropdown-toggle:hover {
+                background: rgba(255, 255, 255, 0.05);
+                color: #ffffff;
+            }
+
+            /* Dropdown toggle for left alignment */
+            .nav-links button.dropdown-toggle {
+                flex-direction: row;
+                gap: 8px;
+            }
+
+            .nav-links button.dropdown-toggle span {
+                order: 1;
+                flex: 1;
+                text-align: left;
+            }
+
+            .nav-links button.dropdown-toggle .dropdown-arrow {
+                order: 2;
+                color: rgba(255, 255, 255, 0.7);
+                flex-shrink: 0;
+            }
+
+            /* Hide desktop hover trigger inside mobile */
+            .nav-links .dropdown>a.desktop-only {
+                display: none;
+            }
+
+            /* Mobile submenu */
+            .dropdown-menu {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 0;
+                border: none;
+            }
+
+            .dropdown-menu li {
+                margin: 0 0 0 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .dropdown-menu li:last-child {
+                border-bottom: none;
+            }
+
+            .dropdown-menu li a {
+                padding: 0.8rem 0;
+                font-size: 0.95rem;
+                color: rgba(255, 255, 255, 0.9);
+                font-weight: 400;
+                text-align: left;
+                justify-content: flex-start;
+            }
+
+            .dropdown-menu li a:hover {
+                color: #ffffff;
+                background: rgba(255, 255, 255, 0.05);
+            }
+
+            .dropdown.active>.dropdown-menu {
+                display: flex;
+            }
+
+            /* Rotate arrow when open */
+            .dropdown.active .dropdown-arrow {
+                transform: rotate(180deg);
+                color: #ffffff;
+            }
+
+            .dropdown-toggle .dropdown-arrow {
+                transition: all 0.3s ease;
+            }
+        }
+
+        /* Desktop styles */
+        @media (min-width: 769px) {
+            .mobile-dropdown-trigger {
+                display: none;
+            }
+
+            .nav-links {
+                display: flex !important;
+            }
+        }
+    </style>
+
+    <!-- Self-contained JavaScript -->
+    <script>
+        (function () {
+            // Wait a moment for the DOM to be ready
+            setTimeout(function () {
+                // Mobile menu toggle
+                const menuToggle = document.querySelector('.menu-toggle');
+                const navbar = document.querySelector('.navbar');
+
+                if (menuToggle && navbar) {
+                    menuToggle.addEventListener('click', function () {
+                        navbar.classList.toggle('open');
+                    });
+                }
+
+                // Mobile dropdown toggle
+                const dropdownToggle = document.querySelector('.mobile-dropdown-trigger');
+                const dropdown = document.querySelector('.dropdown');
+
+                if (dropdownToggle && dropdown) {
+                    dropdownToggle.addEventListener('click', function (e) {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            dropdown.classList.toggle('active');
+                        }
+                    });
+                }
+
+                // Desktop dropdown toggle
+                const desktopDropdownToggle = document.querySelector('.dropdown-toggle.desktop-only');
+                if (desktopDropdownToggle && dropdown) {
+                    desktopDropdownToggle.addEventListener('click', function (e) {
+                        if (window.innerWidth > 768) {
+                            e.preventDefault();
+                            dropdown.classList.toggle('active');
+                        }
+                    });
+                }
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function (e) {
+                    if (dropdown && !dropdown.contains(e.target)) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function (e) {
+                    if (navbar && !navbar.contains(e.target) && window.innerWidth <= 768) {
+                        navbar.classList.remove('open');
+                    }
+                });
+
+                // Handle window resize
+                window.addEventListener('resize', function () {
+                    if (window.innerWidth > 768) {
+                        navbar.classList.remove('open');
+                    }
+                });
+
+            }, 100);
+        })();
+    </script>
+</header>

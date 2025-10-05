@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Events | RA&MTECH</title>
+    <link rel="stylesheet" href="/RA-MTECH-SITE/assets/style.css?v=2">
+</head>
+
+<body>
+    <div id="site-header"></div>
+
+    <!-- Main content of the document -->
+    <main class="page-fill">
+        <!-- Events: Coming Soon section -->
+        <section class="events-hero" aria-labelledby="events-coming-soon">
+            <h1 id="events-coming-soon">Coming Soon</h1>
+            <p class="muted">RA&MTECH event series to support forecasting professionals.</p>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script>
+        const load = (id, path) =>
+            fetch(path).then(r => r.text()).then(html => (document.getElementById(id).innerHTML = html));
+        Promise.all([
+            load('site-header', '../components/header.html'),
+            load('site-footer', '../components/footer.html')
+        ]).then(() => {
+            // Mobile menu toggle
+            document.querySelector('.menu-toggle')?.addEventListener('click', () => {
+                document.querySelector('.navbar')?.classList.toggle('open');
+            });
+
+            // Mobile dropdown toggle
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdown = document.querySelector('.dropdown');
+
+            if (dropdownToggle && dropdown) {
+                dropdownToggle.addEventListener('click', function (e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            }
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (e) {
+                if (dropdown && !dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+
+
+            // Track clicks on the Get Started button
+            const getStartedBtn = document.querySelector('.btn-outline');
+            if (getStartedBtn) {
+                getStartedBtn.addEventListener('click', () => {
+                    gtag('event', 'get_started_click', {
+                        event_category: 'engagement',
+                        event_label: 'Get Started Button',
+                        value: 1
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Page Not Found | RA&MTECH</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <!-- Main site styles -->
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        /* Scoped 404 overlay styles (no global file changes) */
+        .error-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(145deg, #0d1117, #1b1f26);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 10% 80px;
+            text-align: center;
+            overflow: hidden;
+            z-index: 2000;
+        }
+
+        .error-overlay::before,
+        .error-overlay::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 123, 255, 0.18) 0%, transparent 70%);
+            animation: error-pulse 6s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .error-overlay::after {
+            animation-delay: 3s;
+            filter: blur(4px);
+            opacity: 0.35;
+        }
+
+        @keyframes error-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: .6;
+            }
+
+            50% {
+                transform: scale(1.18);
+                opacity: .25;
+            }
+        }
+
+        .error-box {
+            position: relative;
+            max-width: 760px;
+            width: 100%;
+            background: rgba(27, 31, 38, 0.72);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 12px 40px rgba(0, 123, 255, 0.15), 0 6px 18px rgba(0, 0, 0, 0.45);
+            border-radius: 20px;
+            padding: 56px 48px 52px;
+            animation: fadeInUp 600ms ease;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-code {
+            font-size: 72px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: linear-gradient(90deg, #ffffff, #007BFF 60%, #3da6ff);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .error-heading {
+            font-size: 34px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 18px;
+        }
+
+        .error-text {
+            color: #9aa4af;
+            font-size: 18px;
+            line-height: 1.55;
+            margin-bottom: 34px;
+        }
+
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        .error-btn {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #007BFF;
+            color: #fff;
+            font-weight: 600;
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            position: relative;
+            box-shadow: 0 8px 24px rgba(0, 123, 255, 0.28);
+            border: 2px solid #0d5fb9;
+            transition: background .3s, transform .25s, box-shadow .3s;
+        }
+
+        .error-btn:hover {
+            background: #005fc4;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 123, 255, 0.35);
+        }
+
+        .error-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 16px rgba(0, 123, 255, 0.2);
+        }
+
+        .alt-link {
+            color: #007BFF;
+            text-decoration: underline;
+            font-size: 14px;
+            opacity: .8;
+            transition: opacity .25s;
+        }
+
+        .alt-link:hover {
+            opacity: 1;
+        }
+
+        .divider-glow {
+            width: 160px;
+            height: 2px;
+            margin: 24px auto 36px;
+            background: linear-gradient(90deg, transparent, #007BFF, transparent);
+            filter: drop-shadow(0 0 6px rgba(0, 123, 255, 0.55));
+        }
+
+        @media (max-width: 640px) {
+            .error-box {
+                padding: 46px 28px 44px;
+            }
+
+            .error-code {
+                font-size: 58px;
+            }
+
+            .error-heading {
+                font-size: 28px;
+            }
+
+            .error-text {
+                font-size: 16px;
+            }
+
+            .error-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-overlay" role="alert" aria-live="assertive">
+        <div class="error-box">
+            <div class="error-code">404</div>
+            <h1 class="error-heading">Page Not Found</h1>
+            <div class="divider-glow" aria-hidden="true"></div>
+            <p class="error-text">
+                The page you’re looking for doesn’t exist, was moved, or is temporarily unavailable.
+                Let’s get you back on track.
+            </p>
+            <div class="error-actions">
+                <a href="/RA-MTECH-SITE/#home" class="error-btn" aria-label="Return to homepage">
+                    Return to homepage
+                </a>
+            </div>
+            <p style="margin-top:32px;">
+                <a class="alt-link" href="contact.html">Need help? Contact support →</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

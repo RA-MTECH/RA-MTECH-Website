@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Book a demo with RA&MTECH. AI-powered financial forecasting and analytics." />
+    <meta name="theme-color" content="#0d1117" />
+
+    <title>Book a Demo | RA&MTECH</title>
+
+    <!-- Fonts + Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/RA-MTECH-SITE/assets/style.css" />
+    <script src="/RA-MTECH-SITE/assets/script.js" defer></script>
+
+    <!-- Prefetch header/footer components to speed perceived load -->
+    <link rel="prefetch" href="/RA-MTECH-SITE/components/header.html" as="fetch">
+    <link rel="prefetch" href="/RA-MTECH-SITE/components/footer.html" as="fetch">
+
+    <!-- GA4 (same pattern as main page) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+
+        gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'denied'
+        }, {
+            region: [
+                'AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'IS', 'LI', 'NO', 'GB', 'UK'
+            ]
+        });
+
+        gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'granted',
+            wait_for_update: 500
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NVLK2NJ66N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NVLK2NJ66N');
+
+        // Device property
+        const deviceType = window.innerWidth <= 768 ? 'mobile' : 'desktop';
+        gtag('set', 'user_properties', { device_type: deviceType });
+    </script>
+
+    <!-- Page-only tweaks for logo sizing in the heading -->
+    <style>
+        .contact-hero h1 img {
+            height: 60px;
+            width: auto;
+            vertical-align: middle;
+            margin-left: 8px;
+            position: relative;
+            top: -8px;
+        }
+
+        /* Ensure full screen coverage on mobile */
+        @media (max-width: 768px) {
+            .page-fill {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .contact-hero {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 80vh;
+                padding: 2rem 1rem;
+                text-align: center;
+            }
+
+            .contact-hero h1 {
+                font-size: 1.8rem;
+                line-height: 1.3;
+                margin-bottom: 2rem;
+            }
+
+            .contact-hero h1 img {
+                height: 32px;
+                margin-left: 6px;
+                top: -2px;
+            }
+
+            .waitlist {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .waitlist form {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .waitlist input,
+            .waitlist button {
+                width: 100%;
+                max-width: 300px;
+                padding: 1rem;
+                font-size: 1rem;
+                border-radius: 8px;
+            }
+
+            .waitlist button {
+                background: #007BFF;
+                color: white;
+                border: none;
+                cursor: pointer;
+                transition: background 0.3s ease;
+            }
+
+            .waitlist button:hover {
+                background: #0056b3;
+            }
+
+            #contact-success {
+                margin-top: 1rem;
+                font-size: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Keep active Contact link styled like a normal nav link on this page */
+        .navbar .nav-links a.active {
+            background: transparent !important;
+            border: 0 !important;
+            padding: 0 !important;
+            color: #ccc !important;
+            box-shadow: none !important;
+        }
+
+        .navbar .nav-links a.active:hover {
+            color: #fff !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Shared header -->
+    <div id="site-header"></div>
+
+    <!-- Add main wrapper and proper mobile styling -->
+    <main class="page-fill">
+        <!-- Hero-style contact section -->
+        <section class="events-hero contact-hero">
+            <h1>
+                Book a demo with
+                <img src="/RA-MTECH-SITE/assets/images/logo.png" alt="RA&MTECH" />
+            </h1>
+
+            <!-- Centered email form (uses existing .waitlist styles for inputs/buttons) -->
+            <div class="waitlist" style="background: transparent; padding: 30px 0 0;">
+                <form id="contact-form">
+                    <input type="email" name="email" id="contact-email" placeholder="Enter your email" required />
+                    <button type="submit">Request Demo</button>
+                    <p id="contact-success" style="display:none; color: green;"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shared footer -->
+    <div id="site-footer"></div>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init('1St8aSSLxAAWWK4nc');
+
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('contact-email').value.trim();
+            const msg = document.getElementById('contact-success');
+
+            if (!email) {
+                alert("Please enter a valid email.");
+                return;
+            }
+
+            const templateParams = { email: email };
+            console.log("✅ Demo request email:", email);
+            console.log("✅ Template Params:", templateParams);
+
+            // Send to user
+            emailjs.send("service_359kggr", "template_z9vh42q", templateParams)
+                .then((res1) => {
+                    console.log("User email sent:", res1.status, res1.text);
+                    // Send to admin
+                    return emailjs.send("service_359kggr", "template_e8n4jdl", templateParams);
+                })
+                .then((res2) => {
+                    console.log("Admin email sent:", res2.status, res2.text);
+
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'demo_request', {
+                            method: 'emailjs',
+                            page_location: window.location.href,
+                            page_title: document.title
+                        });
+                    }
+
+                    msg.textContent = "Thanks! We’ll contact you shortly to book your demo.";
+                    msg.style.color = "green";
+                    msg.style.display = "block";
+                    document.getElementById('contact-form').reset();
+                })
+                .catch((error) => {
+                    console.error("🚨 EmailJS error:", error);
+                    msg.textContent = "Oops! Something went wrong. Please try again.";
+                    msg.style.color = "red";
+                    msg.style.display = "block";
+                });
+        });
+    </script>
+
+    <!-- Load shared header/footer and nav behaviors -->
+    <script>
+        // Cache header/footer HTML in sessionStorage to avoid refetch and speed load
+        const base = '..';
+        const load = (id, path) =>
+            fetch(path).then(r => r.text()).then(html => (document.getElementById(id).innerHTML = html));
+        Promise.all([
+            load('site-header', '../components/header.html'),
+            load('site-footer', '../components/footer.html')
+        ]).then(() => {
+            // Mobile menu toggle
+            document.querySelector('.menu-toggle')?.addEventListener('click', () => {
+                document.querySelector('.navbar')?.classList.toggle('open');
+            });
+
+            // Mobile dropdown toggle
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdown = document.querySelector('.dropdown');
+
+            if (dropdownToggle && dropdown) {
+                dropdownToggle.addEventListener('click', function (e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            }
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (e) {
+                if (dropdown && !dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+
+
+            // Track clicks on the Get Started button
+            const getStartedBtn = document.querySelector('.btn-outline');
+            if (getStartedBtn) {
+                getStartedBtn.addEventListener('click', () => {
+                    gtag('event', 'get_started_click', {
+                        event_category: 'engagement',
+                        event_label: 'Get Started Button',
+                        value: 1
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://ra-mtech.com/sitemap.xml

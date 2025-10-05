@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About | RA&MTECH</title>
+    <link rel="stylesheet" href="/RA-MTECH-SITE/assets/style.css?v=2" />
+
+    <!-- Custom styles for About page hero section -->
+    <style>
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-logo {
+            display: block;
+            margin: 0 auto 2rem auto;
+            max-width: 500px;
+            height: auto;
+        }
+
+        .hero h1 {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-logo {
+                max-width: 200px;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero h1 {
+                margin-top: 1.5rem;
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-logo {
+                max-width: 300px;
+                margin-bottom: 1rem;
+            }
+
+            .hero h1 {
+                margin-top: 1rem;
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="site-header"></div>
+
+    <main>
+        <!-- Top section with main logo and "Who we are" -->
+        <section class="hero" id="about-hero">
+            <div class="hero-content" style="text-align:center">
+                <img class="hero-logo" src="/RA-MTECH-SITE/assets/images/logo.png" alt="RA&MTECH Logo" />
+                <h1>Smarter Forecasting</h1>
+            </div>
+        </section>
+
+        <!-- Mission Statement -->
+        <section class="about" id="mission">
+            <div class="about-text">
+                <p class="subheading">Our Mission</p>
+                <h2>Mission Statement</h2>
+                <p class="mission-body">RA&MTECH empowers finance teams with our machine learning forecasting system
+                    that's built for
+                    speed, accuracy, and
+                    real-world decision making.</p>
+            </div>
+        </section>
+
+        <!-- Firm Overview -->
+        <section class="ai-fpa" id="firm-overview">
+            <h2>About RA&MTECH</h2>
+            <div class="ai-content">
+                <div class="ai-text"></div>
+                <p
+                    style="font-size: 20px; font-weight: 700; color: #fff; margin: 0 auto; max-width: 900px; line-height: 2.0;">
+                    RA&MTECH is the future of revenue forecasting. We leverage cutting-edge machine learning tools
+                    to
+                    deliver unparalleled accuracy and speed, enabling finance teams to make informed, data-driven
+                    decisions.
+                    Our team is made up of ML and quant finance experts who are passionate about transforming the
+                    way businesses approach financial planning.
+                    RA&MTECH is committed to innovation, excellence, and customer success, and we are dedicated to
+                    helping our clients achieve their goals with confidence.
+                </p>
+            </div>
+            </div>
+        </section>
+
+        <!-- Our Process -->
+        <section class="services" id="process">
+            <h2>Our Process</h2>
+            <div class="service-cards">
+                <div class="card process-card" aria-label="Discovery step">
+                    <div class="team-info">
+                        <h3>Discovery</h3>
+                        <p>We align on your forecasting goals, key revenue drivers, and how your business is positioned
+                            within its industry landscape.</p>
+                    </div>
+                </div>
+                <div class="card process-card" aria-label="Data and Forecasting Analysis step">
+                    <div class="team-info">
+                        <h3>Data &amp; Forecasting Analysis</h3>
+                        <p>Review your historical data sources for structure, quality, seasonality, and volatility.
+                            Confirm the forecast horizon.</p>
+                    </div>
+                </div>
+                <div class="card process-card" aria-label="Forecast delivery step">
+                    <div class="team-info">
+                        <h3>Forecast</h3>
+                        <p>Train and evaluate machine learning models to deliver explainable
+                            forecasting reports and dashboards. </p>
+                    </div>
+                </div>
+            </div>
+            <p class="process-note"
+                style="margin-top:1.5rem;font-size:.85rem;color:#b9b9b9;text-align:center;max-width:800px;margin-left:auto;margin-right:auto;line-height:1.4;">
+                Typical project length is one quarter. We reforecast each month as new data becomes available.
+            </p>
+        </section>
+
+        <!-- Finance / ML Banner -->
+        <section class="pulse-banner" id="finance-ml">
+            <div class="pulse-inner">
+                <p class="pulse-line">
+                    Built for finance<span class="dot">.</span> Powered by machine learning<span class="dot">.</span>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script>
+        const load = (id, path) =>
+            fetch(path).then(r => r.text()).then(html => (document.getElementById(id).innerHTML = html));
+        Promise.all([
+            load('site-header', '../components/header.html'),
+            load('site-footer', '../components/footer.html')
+        ]).then(() => {
+            // Mobile menu toggle
+            document.querySelector('.menu-toggle')?.addEventListener('click', () => {
+                document.querySelector('.navbar')?.classList.toggle('open');
+            });
+
+            // Mobile dropdown toggle
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            const dropdown = document.querySelector('.dropdown');
+
+            if (dropdownToggle && dropdown) {
+                dropdownToggle.addEventListener('click', function (e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            }
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function (e) {
+                if (dropdown && !dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                }
+            });
+
+
+            // Track clicks on the Get Started button
+            const getStartedBtn = document.querySelector('.btn-outline');
+            if (getStartedBtn) {
+                getStartedBtn.addEventListener('click', () => {
+                    gtag('event', 'get_started_click', {
+                        event_category: 'engagement',
+                        event_label: 'Get Started Button',
+                        value: 1
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
