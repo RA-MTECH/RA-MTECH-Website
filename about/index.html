@@ -65,7 +65,7 @@
         <!-- Top section with main logo and "Who we are" -->
         <section class="hero" id="about-hero">
             <div class="hero-content" style="text-align:center">
-                <img class="hero-logo" src="/assets/images/logo.png" alt="RA&MTECH Logo" />
+                <img class="hero-logo" src="assets/images/logo.png" alt="RA&MTECH Logo" />
                 <h1>Smarter Forecasting</h1>
             </div>
         </section>
@@ -150,8 +150,8 @@
         const load = (id, path) =>
             fetch(path).then(r => r.text()).then(html => (document.getElementById(id).innerHTML = html));
         Promise.all([
-            load('site-header', '/components/header.html'),
-            load('site-footer', '/components/footer.html')
+            load('site-header', 'components/header.html'),
+            load('site-footer', 'components/footer.html')
         ]).then(() => {
             // Mobile menu toggle
             document.querySelector('.menu-toggle')?.addEventListener('click', () => {

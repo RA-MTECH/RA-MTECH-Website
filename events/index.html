@@ -2,10 +2,12 @@
 <html lang="en">
 
 <head>
+    <base href="/">
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Events | RA&MTECH</title>
-    <link rel="stylesheet" href="../assets/style.css?v=2">
+    <link rel="stylesheet" href="assets/style.css?v=2">
 </head>
 
 <body>
@@ -26,8 +28,8 @@
         const load = (id, path) =>
             fetch(path).then(r => r.text()).then(html => (document.getElementById(id).innerHTML = html));
         Promise.all([
-            load('site-header', '../components/header.html'),
-            load('site-footer', '../components/footer.html')
+            load('site-header', 'components/header.html'),
+            load('site-footer', 'components/footer.html')
         ]).then(() => {
             // Mobile menu toggle
             document.querySelector('.menu-toggle')?.addEventListener('click', () => {

@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <base href="/">
+
     <!-- Meta -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -241,8 +243,8 @@
         const load = (id, path) =>
             fetch(path).then(r => r.text()).then(html => (document.getElementById(id).innerHTML = html));
         Promise.all([
-            load('site-header', '../components/header.html'),
-            load('site-footer', '../components/footer.html')
+            load('site-header', 'components/header.html'),
+            load('site-footer', 'components/footer.html')
         ]).then(() => {
             // Mobile menu toggle
             document.querySelector('.menu-toggle')?.addEventListener('click', () => {
