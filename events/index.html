@@ -2,74 +2,94 @@
 <html lang="en">
 
 <head>
-    <base href="/">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="RA&MTECH events — an event series to support forecasting professionals." />
+    <meta name="theme-color" content="#0d1117">
+    <link rel="canonical" href="https://ra-mtech.com/events/">
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Events | RA&MTECH</title>
-    <link rel="stylesheet" href="assets/style.css?v=2">
+
+    <!-- Fonts + styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="../assets/images/favicon/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon/favicon-16.png">
+    <link rel="apple-touch-icon" href="../assets/images/favicon/favicon-180.png">
+    <link rel="stylesheet" href="../assets/style.css?v=3">
+
+    <!-- Analytics + shared site behavior -->
+    <script src="../assets/consent.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NVLK2NJ66N"></script>
+    <script src="../assets/script.js" defer></script>
 </head>
 
 <body>
-    <div id="site-header"></div>
+    <!-- ============================= NAVBAR ============================= -->
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <div class="nav-container">
+                <a href="../" class="nav-logo" aria-label="RA&MTECH home">
+                    <img src="../assets/images/logo.png" alt="RA&MTECH">
+                </a>
+                <ul class="nav-links" id="primary-menu">
+                    <li><a href="../#home">Home</a></li>
+                    <li><a href="../about/">About</a></li>
+                    <li><a href="../#services">Services</a></li>
+                    <li><a href="../contact/">Contact</a></li>
+                    <li class="dropdown">
+                        <button class="dropdown-toggle" type="button" aria-expanded="false"
+                            aria-controls="explore-submenu">
+                            Explore RA&MTECH
+                            <svg class="dropdown-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none"
+                                aria-hidden="true">
+                                <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu" id="explore-submenu">
+                            <li><a href="../case-studies/">Case Studies</a></li>
+                            <li><a href="../events/">Events</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="../contact/" class="btn btn-sm nav-cta">Book a Demo</a>
+                <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false"
+                    aria-controls="primary-menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
 
-    <!-- Main content of the document -->
     <main class="page-fill">
-        <!-- Events: Coming Soon section -->
-        <section class="events-hero" aria-labelledby="events-coming-soon">
-            <h1 id="events-coming-soon">Coming Soon</h1>
-            <p class="muted">RA&MTECH event series to support forecasting professionals.</p>
+        <!-- ============================= COMING SOON ============================= -->
+        <section class="events-hero bg-grid" aria-labelledby="events-coming-soon">
+            <p class="subheading">Events</p>
+            <h1 id="events-coming-soon" class="wave-text" data-text="Coming Soon">Coming Soon</h1>
+            <p class="muted">The RA&MTECH event series to support forecasting professionals.</p>
         </section>
     </main>
 
-    <div id="site-footer"></div>
-
-    <script>
-        const load = (id, path) =>
-            fetch(path).then(r => r.text()).then(html => (document.getElementById(id).innerHTML = html));
-        Promise.all([
-            load('site-header', 'components/header.html'),
-            load('site-footer', 'components/footer.html')
-        ]).then(() => {
-            // Mobile menu toggle
-            document.querySelector('.menu-toggle')?.addEventListener('click', () => {
-                document.querySelector('.navbar')?.classList.toggle('open');
-            });
-
-            // Mobile dropdown toggle
-            const dropdownToggle = document.querySelector('.dropdown-toggle');
-            const dropdown = document.querySelector('.dropdown');
-
-            if (dropdownToggle && dropdown) {
-                dropdownToggle.addEventListener('click', function (e) {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        dropdown.classList.toggle('active');
-                    }
-                });
-            }
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function (e) {
-                if (dropdown && !dropdown.contains(e.target)) {
-                    dropdown.classList.remove('active');
-                }
-            });
-
-
-            // Track clicks on the Get Started button
-            const getStartedBtn = document.querySelector('.btn-outline');
-            if (getStartedBtn) {
-                getStartedBtn.addEventListener('click', () => {
-                    gtag('event', 'get_started_click', {
-                        event_category: 'engagement',
-                        event_label: 'Get Started Button',
-                        value: 1
-                    });
-                });
-            }
-        });
-    </script>
+    <!-- ============================= FOOTER ============================= -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <a href="../" class="footer-brand" aria-label="RA&MTECH home">
+                <img src="../assets/images/logo.png" alt="RA&MTECH">
+            </a>
+            <ul class="footer-links">
+                <li><a href="../#home">Home</a></li>
+                <li><a href="../about/">About</a></li>
+                <li><a href="../#services">Services</a></li>
+                <li><a href="../contact/">Contact</a></li>
+                <li><a href="https://www.linkedin.com/company/ra-mtech-llc/" target="_blank"
+                        rel="noopener noreferrer">LinkedIn</a></li>
+            </ul>
+            <p class="footer-copy">© 2026 RA&MTECH LLC. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 
 </html>
